@@ -1,0 +1,27 @@
+# Compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Local Vector DB storage (for Phase 2/3 Docker volume)
+/qdrant_storage
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# Test coverage
+/coverage
