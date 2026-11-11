@@ -1,0 +1,25 @@
+services:
+  # Container 1: Our NestJS Backend
+  api:
+    build: .
+    container_name: rag-nestjs-api
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      # Notice "qdrant" here! Inside Docker Compose, containers talk to each other using their service name as the hostname!
+      - QDRANT_URL=http://qdrant:6333
+      # Special Docker DNS name that lets a Linux container reach Ollama running on your host Windows machine!
+      - OLLAMA_URL=http://host.docker.internal:11434
+    depends_on:
+      - qdrant
+
+  # Container 2: Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: rag-qdrant-db
+    ports:
+      - "6333:6333" # REST API & Web Dashboard
+    volumes:
+      # Saves Qdrant's database files to ./qdrant_storage on your PC so data survives container restarts!
+      - ./qdrant_storage:/qdrant/storage
