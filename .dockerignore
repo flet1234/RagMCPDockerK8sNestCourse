@@ -1,0 +1,7 @@
+node_modules
+dist
+.git
+.env
+qdrant_storage
+coverage
+*.md
