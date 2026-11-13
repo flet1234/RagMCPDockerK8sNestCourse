@@ -28,12 +28,12 @@ describe('DocumentsController', () => {
     controller = module.get<DocumentsController>(DocumentsController);
   });
 
-  it('should call documentsService.create with the DTO', () => {
+  it('should call documentsService.create with the DTO', async () => {
     const dto = { title: 'Test', content: 'Hello' };
     const result = controller.create(dto);
 
     // Verify controller passed the exact DTO to the service
     expect(mockDocumentsService.create).toHaveBeenCalledWith(dto);
-    expect(result.id).toBe('mock-123');
+    expect((await result).id).toBe('mock-123');
   });
 });
